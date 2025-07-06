@@ -1,0 +1,36 @@
+{% schema %}
+{
+  "name": "Group Classes",
+  "tag": "section",
+  "class": "group-classes-section",
+  "settings": [
+    {"type": "text", "id": "title", "label": "Title", "default": "Group Classes"},
+    {"type": "textarea", "id": "text", "label": "Description", "default": "Describe your group class offerings."},
+    {"type": "image_picker", "id": "image", "label": "Image"}
+  ],
+  "presets": [
+    {"name": "Group Classes"}
+  ]
+}
+{% endschema %}
+
+<section id="group-classes" class="group-classes page-width">
+  <div class="group-classes__inner">
+    {% if section.settings.image %}
+      <div class="group-classes__image">
+        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.title }}">
+      </div>
+    {% endif %}
+    <div class="group-classes__content">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="rte">{{ section.settings.text }}</div>
+    </div>
+  </div>
+</section>
+
+<style>
+.group-classes { padding: 60px 0; }
+.group-classes__inner { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
+.group-classes__image { flex:1 1 300px; }
+.group-classes__content { flex:1 1 300px; }
+</style>

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "small-group",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

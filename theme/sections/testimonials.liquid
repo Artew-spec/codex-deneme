@@ -1,0 +1,82 @@
+<section id="testimonials" class="testimonials-wrapper page-width">
+  {% if section.settings.title != blank %}
+    <h2 class="testimonials-title">{{ section.settings.title }}</h2>
+  {% endif %}
+  {% if section.settings.subtitle != blank %}
+    <p class="testimonials-subtitle">{{ section.settings.subtitle }}</p>
+  {% endif %}
+
+  <div class="testimonials-slider">
+    {% for block in section.blocks %}
+      <div class="testimonial-item">
+        {% if block.settings.quote != blank %}
+          <p class="quote">“{{ block.settings.quote }}”</p>
+        {% endif %}
+        {% if block.settings.author != blank %}
+          <p class="author">— {{ block.settings.author }}{% if block.settings.author_role != blank %}, {{ block.settings.author_role }}{% endif %}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "What Students Are Saying",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What Students Are Saying"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Hear from our students"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "This course completely changed my life!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Jane Doe"
+        },
+        {
+          "type": "text",
+          "id": "author_role",
+          "label": "Author Role",
+          "default": "Student"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Sections",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
