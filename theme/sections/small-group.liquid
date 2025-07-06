@@ -16,21 +16,81 @@
 
 <section id="small-group" class="small-group page-width">
   <div class="small-group__inner">
-    {% if section.settings.image %}
-      <div class="small-group__image">
-        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.title }}">
-      </div>
-    {% endif %}
-    <div class="small-group__content">
-      <h2>{{ section.settings.title }}</h2>
+    <div class="small-group__info">
+      <h1>{{ section.settings.title }}</h1>
       <div class="rte">{{ section.settings.text }}</div>
+      <ul class="features">
+        <li>Sessions held every weekday</li>
+        <li>60-minute lesson length</li>
+        <li>Individual attention in a small setting</li>
+        <li>Interactive activities</li>
+      </ul>
     </div>
+    <aside class="small-group__pricing">
+      <span id="package-price" class="price">&nbsp;</span>
+      <a href="/checkout" class="button button--primary">Proceed to Checkout</a>
+    </aside>
   </div>
 </section>
 
 <style>
-.small-group { padding: 60px 0; }
-.small-group__inner { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
-.small-group__image { flex:1 1 300px; }
-.small-group__content { flex:1 1 300px; }
+.small-group {
+  padding: 60px 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+}
+.small-group__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.small-group__info {
+  flex: 2 1 300px;
+}
+.small-group__pricing {
+  flex: 1 1 250px;
+  background: #111;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0 0;
+}
+.features li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.features li:before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: #4e54c8;
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  const price = params.get('price');
+  if (price) {
+    document.getElementById('package-price').textContent = price;
+  }
+});
+</script>
