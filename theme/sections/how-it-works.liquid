@@ -1,0 +1,121 @@
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "How It Works"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Follow these simple steps to start learning."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "Step 1"
+        },
+        {
+          "type": "textarea",
+          "id": "step_description",
+          "label": "Description",
+          "default": "Choose your subject and learning goals."
+        },
+        {
+          "type": "image_picker",
+          "id": "step_icon",
+          "label": "Icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works"
+    }
+  ]
+}
+{% endschema %}
+
+<section id="how-it-works" class="how-it-works">
+  <h2>{{ section.settings.title }}</h2>
+  <p class="subtitle">{{ section.settings.subtitle }}</p>
+  
+  <div class="steps-grid">
+    {% for block in section.blocks %}
+      <div class="step-card" {{ block.shopify_attributes }}>
+        {% if block.settings.step_icon %}
+          <img src="{{ block.settings.step_icon | image_url }}" alt="{{ block.settings.step_title }}" class="step-icon" />
+        {% endif %}
+        <h3>{{ block.settings.step_title }}</h3>
+        <p>{{ block.settings.step_description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.how-it-works {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #fff;
+}
+.how-it-works h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+.how-it-works .subtitle {
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+.steps-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.step-card {
+  flex: 0 0 250px;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+  transition: 0.3s ease;
+}
+.step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.step-icon {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+.step-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #1e293b;
+}
+.step-card p {
+  color: #475569;
+  font-size: 0.95rem;
+}
+</style>

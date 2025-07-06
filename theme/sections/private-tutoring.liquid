@@ -1,0 +1,36 @@
+{% schema %}
+{
+  "name": "Private Tutoring",
+  "tag": "section",
+  "class": "private-tutoring-section",
+  "settings": [
+    {"type": "text", "id": "title", "label": "Title", "default": "Private Tutoring"},
+    {"type": "textarea", "id": "text", "label": "Description", "default": "Add details about your one-on-one tutoring."},
+    {"type": "image_picker", "id": "image", "label": "Image"}
+  ],
+  "presets": [
+    {"name": "Private Tutoring"}
+  ]
+}
+{% endschema %}
+
+<section id="private-tutoring" class="private-tutoring page-width">
+  <div class="private-tutoring__inner">
+    {% if section.settings.image %}
+      <div class="private-tutoring__image">
+        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.title }}">
+      </div>
+    {% endif %}
+    <div class="private-tutoring__content">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="rte">{{ section.settings.text }}</div>
+    </div>
+  </div>
+</section>
+
+<style>
+.private-tutoring { padding: 60px 0; }
+.private-tutoring__inner { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
+.private-tutoring__image { flex:1 1 300px; }
+.private-tutoring__content { flex:1 1 300px; }
+</style>

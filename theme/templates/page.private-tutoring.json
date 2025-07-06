@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "private-tutoring",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
