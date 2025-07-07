@@ -31,36 +31,6 @@
         </div>
       </div>
 
-      <h2 class="plans-title">Choose Your Plan</h2>
-      <div class="plans">
-        <div class="plan-card" data-price="199.99" data-plan="Monthly">
-          <h3>Monthly</h3>
-          <p class="plan-price">$199.99</p>
-          <ul class="plan-features">
-            <li>4 sessions</li>
-            <li>Homework feedback</li>
-          </ul>
-          <button class="select-plan">Select</button>
-        </div>
-        <div class="plan-card" data-price="549.99" data-plan="3-Month">
-          <h3>3-Month</h3>
-          <p class="plan-price">$549.99</p>
-          <ul class="plan-features">
-            <li>12 sessions</li>
-            <li>Progress tracking</li>
-          </ul>
-          <button class="select-plan">Select</button>
-        </div>
-        <div class="plan-card" data-price="1199.99" data-plan="12-Month">
-          <h3>12-Month</h3>
-          <p class="plan-price">$1199.99</p>
-          <ul class="plan-features">
-            <li>48 sessions</li>
-            <li>Priority scheduling</li>
-          </ul>
-          <button class="select-plan">Select</button>
-        </div>
-      </div>
     </div>
 
     <!-- RIGHT: Cart (fixed) -->
@@ -138,34 +108,6 @@
   margin: 0 0 0.5rem;
 }
 
-.plans {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.8rem;
-}
-.plan-card {
-  background: rgba(255,255,255,0.7);
-  border-radius: 16px;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-  padding: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-.plan-price {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #4e54c8;
-  margin: 0.2rem 0 0.8rem 0;
-}
-.plan-features { list-style:none; padding:0; margin:0 0 1rem 0; flex:1 0 auto; }
-.plan-features li { position:relative; padding-left:1.2rem; margin-bottom:0.35rem; color:#444; font-size:1rem; }
-.plan-features li:before { content:"–"; position:absolute; left:0; color:#8f94fb; }
-.select-plan {
-  border:none; border-radius:20px; padding:0.6rem 1rem; background:linear-gradient(90deg,#4e54c8,#8f94fb 90%); color:#fff; cursor:pointer; font-weight:600;
-}
 
 .private-tutoring__cart {
   flex: 1 1 350px;
@@ -236,16 +178,5 @@ document.addEventListener('DOMContentLoaded', function() {
   if(plan) checkoutUrl += `&plan=${encodeURIComponent(plan)}`;
   checkoutBtn.setAttribute('href', checkoutUrl);
 
-  document.querySelectorAll('.select-plan').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.plan-card');
-      const p = card.dataset.price;
-      const pl = card.dataset.plan;
-      document.getElementById('cartPrice').textContent = `$${p}`;
-      document.getElementById('cartPlanName').textContent = pl;
-      let url = `/checkout?package=private-tutoring&price=${encodeURIComponent(p)}&plan=${encodeURIComponent(pl)}`;
-      checkoutBtn.setAttribute('href', url);
-    });
-  });
 });
 </script>
