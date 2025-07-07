@@ -108,6 +108,13 @@
     animation: nav-flicker 0.6s linear;
   }
 
+  /* Smooth scrolling for in-page anchors on the index page */
+  {%- if request.page_type == 'index' -%}
+    html {
+      scroll-behavior: smooth;
+    }
+  {%- endif -%}
+
   @keyframes nav-flicker {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
