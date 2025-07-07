@@ -1,0 +1,106 @@
+{% schema %}
+{
+  "name": "Private Tutoring",
+  "tag": "section",
+  "class": "private-tutoring-section",
+  "settings": [
+    {"type": "text", "id": "title", "label": "Title", "default": "Private Tutoring"},
+    {"type": "textarea", "id": "text", "label": "Description", "default": "Add details about your one-on-one tutoring."},
+    {"type": "image_picker", "id": "image", "label": "Image"}
+  ],
+  "presets": [
+    {"name": "Private Tutoring"}
+  ]
+}
+{% endschema %}
+
+<section id="private-tutoring" class="private-tutoring page-width">
+  <div class="private-tutoring__inner">
+    <div class="private-tutoring__info">
+      <h1>{{ section.settings.title }}</h1>
+      <div class="rte">{{ section.settings.text }}</div>
+      <ul class="features">
+        <li>Sessions held every weekday</li>
+        <li>60-minute lesson length</li>
+        <li>Tailored curriculum</li>
+        <li>Dedicated language coach</li>
+      </ul>
+    </div>
+    <aside class="private-tutoring__pricing">
+      <span id="package-price" class="price">&nbsp;</span>
+      <a href="/checkout" class="button button--primary">Proceed to Checkout</a>
+    </aside>
+  </div>
+</section>
+
+<style>
+.private-tutoring {
+  padding: 60px 0;
+  background: linear-gradient(180deg, rgba(78,84,200,0.5), rgba(143,148,251,0.5));
+  backdrop-filter: blur(6px);
+}
+.section-header {
+  display: none;
+}
+
+.private-tutoring__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.private-tutoring__info {
+  flex: 2 1 300px;
+}
+
+.private-tutoring__pricing {
+  flex: 1 1 250px;
+  background: #111;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0 0;
+}
+
+.features li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.features li:before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: #4e54c8;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  const price = params.get('price');
+  if (price) {
+    document.getElementById('package-price').textContent = price;
+  }
+});
+</script>

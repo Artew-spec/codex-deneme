@@ -1,0 +1,470 @@
+{% schema %}
+{
+  "name": "Teacher Matching",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Choose Your Learning Plan"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Select the package that fits your learning goals and budget</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "package",
+      "name": "Class Package",
+      "settings": [
+        {
+          "type": "text",
+          "id": "package_name",
+          "label": "Package Name"
+        },
+        {
+          "type": "text",
+          "id": "class_type",
+          "label": "Class Type",
+          "info": "e.g., 1-on-1, Small Group, Group Class"
+        },
+        {
+          "type": "text",
+          "id": "student_count",
+          "label": "Student Count",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "monthly_price",
+          "label": "1-Month Price",
+          "default": "199.99"
+        },
+        {
+          "type": "text",
+          "id": "quarterly_price",
+          "label": "3-Month Price",
+          "default": "184.99",
+          "info": "Monthly rate for 3-month commitment"
+        },
+        {
+          "type": "text",
+          "id": "yearly_price",
+          "label": "12-Month Price",
+          "default": "119.99",
+          "info": "Monthly rate for 12-month commitment"
+        },
+        {
+          "type": "richtext",
+          "id": "features",
+          "label": "Features",
+          "default": "<p>Feature list</p>"
+        },
+        {
+          "type": "url",
+          "id": "booking_link",
+          "label": "Booking Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Class Packages"
+    }
+  ]
+}
+{% endschema %}
+
+<div id="pricing" class="class-packages-section page-width">
+  <h1 class="h2">{{ section.settings.title }}</h1>
+  <div class="rte">{{ section.settings.description }}</div>
+  
+  <!-- Duration Toggle -->
+  <div class="duration-toggle">
+    <button class="duration-option active" data-duration="monthly">Monthly Plan</button>
+    <button class="duration-option" data-duration="quarterly">3-Month Plan (Save 7.5%)</button>
+    <button class="duration-option" data-duration="yearly">12-Month Plan (Save 40%)</button>
+  </div>
+  
+  <div class="package-grid">
+    <!-- 1-on-1 Package -->
+    <div class="package-card">
+      <div class="package-header">
+        <h3>Private Tutoring</h3>
+        <div class="class-type">1-on-1</div>
+      </div>
+      <div class="package-details">
+        <div class="student-count">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+          </svg>
+          1 student
+        </div>
+        <div class="price-display">
+          <div class="price-option monthly active">
+            <span class="price-amount">$199.99</span>
+            <span class="price-period">per month</span>
+          </div>
+          <div class="price-option quarterly">
+            <span class="price-amount">$184.99</span>
+            <span class="price-period">per month (3-month commitment)</span>
+            <div class="savings-badge">Save 7.5%</div>
+          </div>
+          <div class="price-option yearly">
+            <span class="price-amount">$119.99</span>
+            <span class="price-period">per month (12-month commitment)</span>
+            <div class="savings-badge">Save 40%</div>
+          </div>
+        </div>
+        <div class="package-features">
+          <ul>
+            <li>Personalized 60-minute lessons</li>
+            <li>Flexible scheduling</li>
+            <li>Custom curriculum</li>
+            <li>Weekly progress reports</li>
+          </ul>
+        </div>
+        <a href="/pages/private-tutoring" class="button button--primary book-now">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Small Group Package -->
+    <div class="package-card">
+      <div class="package-header">
+        <h3>Small Group</h3>
+        <div class="class-type">5 students</div>
+      </div>
+      <div class="package-details">
+        <div class="student-count">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          5 students
+        </div>
+        <div class="price-display">
+          <div class="price-option monthly active">
+            <span class="price-amount">$79.99</span>
+            <span class="price-period">per month</span>
+          </div>
+          <div class="price-option quarterly">
+            <span class="price-amount">$69.99</span>
+            <span class="price-period">per month (3-month commitment)</span>
+            <div class="savings-badge">Save 12.5%</div>
+          </div>
+          <div class="price-option yearly">
+            <span class="price-amount">$49.99</span>
+            <span class="price-period">per month (12-month commitment)</span>
+            <div class="savings-badge">Save 38%</div>
+          </div>
+        </div>
+        <div class="package-features">
+          <ul>
+            <li>60-minute group sessions</li>
+            <li>Max 5 students per class</li>
+            <li>Interactive activities</li>
+            <li>Monthly progress reports</li>
+          </ul>
+        </div>
+        <a href="/pages/small-group" class="button button--primary book-now">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Group Class Package -->
+    <div class="package-card">
+      <div class="package-header">
+        <h3>Group Class</h3>
+        <div class="class-type">10 students</div>
+      </div>
+      <div class="package-details">
+        <div class="student-count">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          10 students
+        </div>
+        <div class="price-display">
+          <div class="price-option monthly active">
+            <span class="price-amount">$49.99</span>
+            <span class="price-period">per month</span>
+          </div>
+          <div class="price-option quarterly">
+            <span class="price-amount">$44.99</span>
+            <span class="price-period">per month (3-month commitment)</span>
+            <div class="savings-badge">Save 10%</div>
+          </div>
+          <div class="price-option yearly">
+            <span class="price-amount">$29.99</span>
+            <span class="price-period">per month (12-month commitment)</span>
+            <div class="savings-badge">Save 40%</div>
+          </div>
+        </div>
+        <div class="package-features">
+          <ul>
+            <li>60-minute live classes</li>
+            <li>Max 10 students</li>
+            <li>Structured curriculum</li>
+            <li>Customized assessments</li>
+          </ul>
+        </div>
+        <a href="/pages/group-classes" class="button button--primary book-now">Book Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+ /* Main Section Styling */
+.class-packages-section {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #f9fafb;
+}
+
+/* Duration Toggle */
+.duration-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px auto;
+  max-width: 800px;
+  flex-wrap: wrap;
+}
+
+.duration-option {
+  padding: 14px 24px;
+  border: 2px solid #e0e7ff;
+  background: #ffffff;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #4e54c8;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.duration-option.active {
+  background: #4e54c8;
+  color: #ffffff;
+  border-color: #4e54c8;
+  box-shadow: 0 4px 8px rgba(78, 84, 200, 0.2);
+}
+
+/* Price Display */
+.price-display {
+  position: relative;
+  margin: 20px auto;
+  min-height: 90px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.price-option {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.price-option.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.price-amount {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.price-period {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+.savings-badge {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  background: #10b981;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Package Grid */
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+/* Package Card */
+.package-card {
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 5px 25px rgba(78, 84, 200, 0.08);
+  background: #ffffff;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.package-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(78, 84, 200, 0.15);
+}
+
+.package-header {
+  text-align: center;
+}
+
+.package-header h3 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.class-type {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #e0e7ff;
+  color: #4e54c8;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Student Count */
+.student-count {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  margin: 1rem 0;
+}
+
+.student-count svg {
+  width: 18px;
+  height: 18px;
+  color: #4e54c8;
+}
+
+/* Features List */
+.package-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.package-features li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 0.8rem;
+  color: #475569;
+}
+
+.package-features li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4e54c8;
+  font-weight: bold;
+}
+
+/* Button Styling */
+.button--primary {
+  background: linear-gradient(90deg, #4e54c8, #8f94fb);
+  color: #ffffff !important;
+  padding: 14px 28px;
+  border-radius: 8px;
+  margin-top: 20px;
+  display: inline-block;
+  width: 100%;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+  .duration-toggle {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .duration-option {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const durationOptions = document.querySelectorAll('.duration-option');
+  
+  durationOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      // Update toggle buttons
+      durationOptions.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      
+      const duration = this.dataset.duration;
+      
+      // Update price displays
+      document.querySelectorAll('.price-option').forEach(priceOption => {
+        priceOption.classList.remove('active');
+      });
+      
+      document.querySelectorAll(`.price-option.${duration}`).forEach(priceOption => {
+        priceOption.classList.add('active');
+      });
+    });
+  });
+
+  document.querySelectorAll('.package-card').forEach(card => {
+    const btn = card.querySelector('.book-now');
+    if (!btn) return;
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const priceEl = card.querySelector('.price-option.active .price-amount');
+      const price = priceEl ? priceEl.textContent.trim() : '';
+      const target = btn.getAttribute('href');
+      window.location.href = `${target}?price=${encodeURIComponent(price)}`;
+    });
+  });
+});
+</script>
