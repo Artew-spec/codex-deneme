@@ -119,6 +119,14 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
   }
+
+  /* Hide menu links and icons on small screens so only the drawer shows */
+  @media screen and (max-width: 749px) {
+    .header__inline-menu,
+    .header__icons {
+      display: none !important;
+    }
+  }
 </style>
 
 {%- style -%}
