@@ -44,48 +44,6 @@
   </div>
 </section>
 
-<!-- FAQ Section (tamamen köşeli, cam yok, mat) -->
-<section class="group-classes-faq-mat page-width">
-  <h2 class="faq-title">Frequently Asked Questions</h2>
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-question">How do group classes work?</button>
-      <div class="faq-answer">
-        <p>Group classes let you practice with others at set times. Your instructor leads activities and gives feedback.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Who are the tutors?</button>
-      <div class="faq-answer">
-        <p>All tutors are certified, experienced professionals — many are native speakers. You can view profiles and choose your preferred coach.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">What if I need to reschedule a lesson?</button>
-      <div class="faq-answer">
-        <p>No problem! You can reschedule any session up to 12 hours before the lesson, directly from your dashboard or by contacting us.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Are all materials included?</button>
-      <div class="faq-answer">
-        <p>Yes, all digital materials and homework are included. You’ll also get access to recordings and extra practice activities.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Can I get a refund if I’m not satisfied?</button>
-      <div class="faq-answer">
-        <p>Absolutely. If you’re not happy after your first lesson, we’ll refund your payment. No questions asked!</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">How do I start?</button>
-      <div class="faq-answer">
-        <p>Choose your plan, complete the booking, and we’ll connect you with your personal tutor. All details by email!</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <style>
 body {
@@ -272,91 +230,16 @@ body {
   transform: translateY(-2px) scale(1.017);
 }
 
-/* --- FAQ KÖŞELİ, GÖLGESİZ, MAT --- */
-.group-classes-faq-mat {
-  margin: 40px auto 38px auto;
-  max-width: 870px;
-  background: #fff;
-  box-shadow: none;
-  border-radius: 0 !important;
-  border: 1.5px solid #e4e7f0;
-  padding: 2.3rem 2.4rem 1.4rem 2.4rem;
-}
-.faq-title {
-  text-align: center;
-  color: #4e54c8;
-  font-size: 1.39rem;
-  margin-bottom: 1.1rem;
-  font-weight: 800;
-}
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-.faq-item {
-  background: #fff;
-  border-radius: 0 !important;
-  margin-bottom: 0;
-  border: 1.5px solid #e4e7f0;
-  box-shadow: none;
-  transition: none;
-}
-.faq-item.open, .faq-item:hover {
-  background: #f7faff;
-}
-.faq-question {
-  width: 100%;
-  background: none;
-  border: none;
-  outline: none;
-  font-size: 1.04rem;
-  font-weight: 600;
-  color: #222b58;
-  padding: 0.95rem 1.5rem 0.95rem 1.1rem;
-  text-align: left;
-  cursor: pointer;
-  border-radius: 0 !important;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-}
-.faq-question:after {
-  content: "▼";
-  font-size: 0.97rem;
-  color: #8f94fb;
-  position: absolute;
-  right: 1.15rem;
-  transition: transform 0.18s;
-}
-.faq-item.open .faq-question:after { transform: rotate(-180deg); }
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  background: none;
-  transition: max-height 0.19s cubic-bezier(0.67,0,0.33,1), padding 0.19s;
-  padding: 0 1.2rem;
-  color: #384060;
-}
-.faq-item.open .faq-answer {
-  max-height: 190px;
-  padding: 0 1.2rem 0.6rem 1.2rem;
-}
-.faq-answer p { margin: 0; font-size: 0.99rem; color: #384060; }
-
 @media (max-width: 900px) {
   .group-classes-hero__main { flex-direction: column; gap: 22px; }
   .group-classes-hero__visual { flex-direction: row; gap: 1.5rem; justify-content: flex-start; }
   .group-classes-hero__image, .group-classes-cart-box, .button.checkout-mat { max-width: 48vw; }
   .group-classes-hero__content { max-width: 100%; padding: 1.5rem 0.5rem 1.2rem 0.5rem; }
-  .group-classes-faq-mat { padding: 1.2rem 1rem 0.7rem 1rem; }
 }
 @media (max-width: 600px) {
   .group-classes-hero__visual { flex-direction: column; align-items: center; }
   .group-classes-hero__image, .group-classes-cart-box, .button.checkout-mat { max-width: 100%; }
   .group-classes-cart-box { padding: 1.3rem 0.8rem; }
-  .group-classes-faq-mat { padding: 0.9rem 0.3rem 0.5rem 0.3rem; }
 }
 </style>
 
@@ -383,14 +266,5 @@ document.addEventListener('DOMContentLoaded', function() {
   if(plan) checkoutUrl += `&plan=${encodeURIComponent(plan)}`;
   checkoutBtn.setAttribute('href', checkoutUrl);
 
-  // FAQ accordion
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const item = this.parentElement;
-      const open = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
-      if(!open) item.classList.add('open');
-    });
-  });
 });
 </script>
