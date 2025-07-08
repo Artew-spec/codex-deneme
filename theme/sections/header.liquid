@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link
   rel="stylesheet"
@@ -193,11 +192,6 @@
     {%- liquid
       render 'header-drawer'
     -%}
-    {% if section.settings.logo_position == 'top-center' or section.settings.menu == blank %}
-      <div class="small-hide">
-        {% render 'header-search', input_id: 'Search-In-Modal-1' %}
-      </div>
-    {% endif %}
 
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -297,8 +291,6 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
-
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
