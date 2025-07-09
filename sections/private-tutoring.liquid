@@ -300,13 +300,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('cartPlanName').textContent = plan;
   const checkoutBtn = document.getElementById('checkoutBtn');
   const variantMap = {
-    'Monthly': '47798373155056',
+    'Monthly': '47798731178224',
     '3-Month': '47798731210992',
-    '12-Month': '47798373220592'
+    '12-Month': '47798731243760'
   };
   const variantId = variantMap[plan] || variantMap['Monthly'];
   checkoutBtn.setAttribute('href', `/cart/${variantId}:1`);
-  if (plan === '3-Month') {
     checkoutBtn.addEventListener('click', function(e) {
       e.preventDefault();
       fetch('https://3ex25w-1k.myshopify.com/api/unstable/graphql.json?operation_name=cartCreate', {
@@ -320,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
               discountCodes: [],
               lines: [{
                 attributes: [],
-                merchandiseId: 'gid://shopify/ProductVariant/47798731210992',
+                merchandiseId: `gid://shopify/ProductVariant/${variantId}`,
                 quantity: 1,
                 sellingPlanId: 'gid://shopify/SellingPlan/6983942384'
               }]
@@ -338,6 +337,4 @@ document.addEventListener('DOMContentLoaded', function() {
       }).catch(() => {
         window.location.href = `/cart/${variantId}:1`;
       });
-    });
-  }
-});</script>
+    });});</script>
