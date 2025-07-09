@@ -1,38 +1,47 @@
-<section class="private-tutoring-hero-bg">
-  <div class="private-tutoring-hero page-width">
-    <div class="private-tutoring-hero__main">
+<section class="small-group-hero-bg">
+  <div class="small-group-hero page-width">
+    <div class="small-group-hero__main">
       <!-- SOL: Bilgi -->
-      <div class="private-tutoring-hero__content">
-        <h1>Private Tutoring</h1>
+      <div class="small-group-hero__content">
+        <h1>Small Group</h1>
         <p>
-          Get personalized 1-on-1 lessons tailored to your needs.<br>
-          Your dedicated tutor guides you through each session.
+          Learn together in a small setting of up to five learners.<br>
+          Experienced tutors keep you on track with engaging lessons.
         </p>
         <ul class="features">
-          <li>Custom lesson plans</li>
-          <li>Flexible scheduling</li>
+          <li>Small class size (max 5)</li>
+          <li>Focused attention</li>
           <li>60-minute live sessions</li>
-          <li>One-on-one support</li>
-          <li>Resources included</li>
-          <li>Track progress weekly</li>
-          </ul>
+          <li>Interactive activities</li>
+          <li>Digital materials included</li>
+          <li>Monthly progress reports</li>
+        </ul>
         <div class="info-note">
           <small>Questions? <a href="/contact">Contact us</a> for custom plans!</small>
         </div>
+        <!-- COURSE INFO PARAGRAF YENİ TASARIM -->
+        <div class="course-info-text">
+          <p>
+            Each month, your small group meets for <b>20 live lessons</b>, with every session lasting <b>60 minutes</b>. Classes are led by expert Spanish tutors who create an interactive and supportive environment, ensuring that every student participates and practices real communication. Lessons combine conversation, grammar, and practical topics, and all materials are provided digitally at no extra cost. Whether you want to build confidence or improve fluency, this group format offers the perfect balance of structure, interaction, and fun.
+          </p>
+          <p>
+            Throughout the course, you'll benefit from personalized feedback and regular check-ins to help you stay motivated and track your progress. Our flexible curriculum adapts to the needs and interests of each group, so you can focus on topics that matter most to you. Join a supportive community of learners and take your language skills to the next level—all in an encouraging, small-group setting.
+          </p>
+        </div>
       </div>
       <!-- SAĞ: Görsel + Checkout Cart + Dışarıda Buton -->
-      <div class="private-tutoring-hero__visual">
-        <img class="private-tutoring-hero__image" src="https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_15_59_49.png?v=1751979612" alt="Online English Tutoring, AI generated" loading="lazy" />
-        <div class="private-tutoring-cart-box">
+      <div class="small-group-hero__visual">
+        <img class="small-group-hero__image" src="https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_15_59_49.png?v=1751979612" alt="Online English Tutoring, AI generated" loading="lazy" />
+        <div class="small-group-cart-box">
           <div class="cart-title">Your Selection</div>
-          <div class="cart-package"><strong>Private Tutoring</strong></div>
+          <div class="cart-package"><strong>Small Group</strong></div>
           <div class="cart-plan">Plan: <span id="cartPlanName">Monthly</span></div>
-          <div class="cart-price" id="cartPrice">$199.99</div>
+          <div class="cart-price" id="cartPrice">$79.99</div>
           <ul class="cart-benefits">
-            <li>Personalized attention</li>
-            <li>Flexible scheduling</li>
+            <li>Up to 5 students</li>
+            <li>Group collaboration</li>
+            <li>Set schedule</li>
             <li>Materials included</li>
-            <li>Progress reports</li>
           </ul>
           <div class="cart-note">
             <small>* All prices include VAT. Each session is 60 minutes.</small>
@@ -49,25 +58,25 @@
 body {
   background: linear-gradient(120deg, #f7faff 0%, #edf1fc 42%, #e6eafb 100%) !important;
 }
-.private-tutoring-hero-bg {
+.small-group-hero-bg {
   background: linear-gradient(105deg, #ffffff 60%, #e7e9fb 100%);
   min-height: 80vh;
   padding-top: 40px;
   padding-bottom: 0;
 }
-.private-tutoring-hero {
+.small-group-hero {
   max-width: 1160px;
   margin: 0 auto;
   padding: 0 12px;
 }
-.private-tutoring-hero__main {
+.small-group-hero__main {
   display: flex;
   gap: 40px;
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.private-tutoring-hero__content {
+.small-group-hero__content {
   flex: 2 1 430px;
   min-width: 320px;
   max-width: 600px;
@@ -77,13 +86,13 @@ body {
   justify-content: center;
   background: none;
 }
-.private-tutoring-hero__content h1 {
+.small-group-hero__content h1 {
   font-size: 2.3rem;
   font-weight: 800;
   color: #21264b;
   margin-bottom: 0.8rem;
 }
-.private-tutoring-hero__content p {
+.small-group-hero__content p {
   font-size: 1.18rem;
   color: #31315b;
   margin-bottom: 1.3rem;
@@ -120,9 +129,36 @@ body {
   margin-bottom: 1.1rem;
 }
 
+/* ------ YENİ FERAH COURSE INFO TASARIMI ------ */
+.course-info-text {
+  margin: 2.6rem 0 0 0;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 1.11rem;
+  color: #232a36;
+  line-height: 1.82;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  max-width: 750px;
+}
+.course-info-text p {
+  margin-bottom: 1.35rem;
+}
+@media (max-width: 900px) {
+  .course-info-text {
+    font-size: 1.04rem;
+    margin: 2rem 0 0 0;
+    max-width: 100%;
+  }
+  .course-info-text p {
+    margin-bottom: 1.05rem;
+  }
+}
+/* ------------------------------------------- */
 
 /* --- VISUAL SIDE --- */
-.private-tutoring-hero__visual {
+.small-group-hero__visual {
   flex: 1 1 380px;
   min-width: 290px;
   max-width: 420px;
@@ -131,7 +167,7 @@ body {
   align-items: center;
   gap: 2.1rem;
 }
-.private-tutoring-hero__image {
+.small-group-hero__image {
   width: 100%;
   max-width: 340px;
   object-fit: cover;
@@ -140,7 +176,7 @@ body {
   border-radius: 0 !important;
   box-shadow: none !important;
 }
-.private-tutoring-cart-box {
+.small-group-cart-box {
   width: 100%;
   max-width: 340px;
   padding: 2rem 1.6rem 1.5rem 1.6rem;
@@ -233,15 +269,15 @@ body {
 }
 
 @media (max-width: 900px) {
-  .private-tutoring-hero__main { flex-direction: column; gap: 22px; }
-  .private-tutoring-hero__visual { flex-direction: row; gap: 1.5rem; justify-content: flex-start; }
-  .private-tutoring-hero__image, .private-tutoring-cart-box, .button.checkout-mat { max-width: 48vw; }
-  .private-tutoring-hero__content { max-width: 100%; padding: 1.5rem 0.5rem 1.2rem 0.5rem; }
+  .small-group-hero__main { flex-direction: column; gap: 22px; }
+  .small-group-hero__visual { flex-direction: row; gap: 1.5rem; justify-content: flex-start; }
+  .small-group-hero__image, .small-group-cart-box, .button.checkout-mat { max-width: 48vw; }
+  .small-group-hero__content { max-width: 100%; padding: 1.5rem 0.5rem 1.2rem 0.5rem; }
 }
 @media (max-width: 600px) {
-  .private-tutoring-hero__visual { flex-direction: column; align-items: center; }
-  .private-tutoring-hero__image, .private-tutoring-cart-box, .button.checkout-mat { max-width: 100%; }
-  .private-tutoring-cart-box { padding: 1.3rem 0.8rem; }
+  .small-group-hero__visual { flex-direction: column; align-items: center; }
+  .small-group-hero__image, .small-group-cart-box, .button.checkout-mat { max-width: 100%; }
+  .small-group-cart-box { padding: 1.3rem 0.8rem; }
 }
 </style>
 
@@ -255,55 +291,17 @@ document.addEventListener('DOMContentLoaded', function() {
       .replace('monthly','Monthly')
       .replace('quarterly','3-Month')
       .replace('yearly','12-Month');
-  } else if (price && price.includes('179')) {
+  } else if (price && price.includes('69')) {
     plan = "3-Month";
-  } else if (price && price.includes('119')) {
+  } else if (price && price.includes('49')) {
     plan = "12-Month";
   }
-  document.getElementById('cartPrice').textContent = price ? price : '$199.99';
+  document.getElementById('cartPrice').textContent = price ? price : '$79.99';
   document.getElementById('cartPlanName').textContent = plan;
   const checkoutBtn = document.getElementById('checkoutBtn');
-  const variantMap = {
-    'Monthly': '47798373155056',
-    '3-Month': '47798373187824',
-    '12-Month': '47798373220592'
-  };
-  const sellingPlanMap = {
-    'Monthly': '6983975152',
-    '3-Month': '6983942384',
-    '12-Month': '6984007920'
-  };
-  const variantId = variantMap[plan] || variantMap['Monthly'];
-  const sellingPlanId = sellingPlanMap[plan] || sellingPlanMap['Monthly'];
-  checkoutBtn.setAttribute('href', `/cart/${variantId}:1`);
-  const query = `mutation cartCreate($input:CartInput!$country:CountryCode$language:LanguageCode$withCarrierRates:Boolean=false)@inContext(country:$country language:$language){result:cartCreate(input:$input){...@defer(if:$withCarrierRates){cart{...CartParts}errors:userErrors{...on CartUserError{message field code}}warnings:warnings{...on CartWarning{code}}}}}fragment CartParts on Cart{id checkoutUrl deliveryGroups(first:10 withCarrierRates:$withCarrierRates){edges{node{id groupType selectedDeliveryOption{code title handle deliveryPromise deliveryMethodType estimatedCost{amount currencyCode}}deliveryOptions{code title handle deliveryPromise deliveryMethodType estimatedCost{amount currencyCode}}}}}cost{subtotalAmount{amount currencyCode}totalAmount{amount currencyCode}totalTaxAmount{amount currencyCode}totalDutyAmount{amount currencyCode}}discountAllocations{discountedAmount{amount currencyCode}...on CartCodeDiscountAllocation{code}...on CartAutomaticDiscountAllocation{title}...on CartCustomDiscountAllocation{title}}discountCodes{code applicable}lines(first:10){edges{node{quantity cost{subtotalAmount{amount currencyCode}totalAmount{amount currencyCode}}discountAllocations{discountedAmount{amount currencyCode}...on CartCodeDiscountAllocation{code}...on CartAutomaticDiscountAllocation{title}...on CartCustomDiscountAllocation{title}}merchandise{...on ProductVariant{requiresShipping}}sellingPlanAllocation{priceAdjustments{price{amount currencyCode}}sellingPlan{billingPolicy{...on SellingPlanRecurringBillingPolicy{interval intervalCount}}priceAdjustments{orderCount}recurringDeliveries}}}}}}`;
-  checkoutBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    fetch('https://3ex25w-1k.myshopify.com/api/unstable/graphql.json?operation_name=cartCreate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        query,
-        variables: {
-          country: 'TR',
-          input: {
-            discountCodes: [],
-            lines: [{
-              attributes: [],
-              merchandiseId: `gid://shopify/ProductVariant/${variantId}`,
-              quantity: 1,
-              sellingPlanId: `gid://shopify/SellingPlan/${sellingPlanId}`
-            }]
-          },
-          language: 'EN'
-      })
-    }).then(r => r.json()).then(data => {
-      const url = data && data.data && data.data.result && data.data.result.cart && data.data.result.cart.checkoutUrl;
-      if (url) {
-        window.location.href = url;
-      } else {
-        window.location.href = `/cart/${variantId}:1`;
-      }
-    }).catch(() => {
-      window.location.href = `/cart/${variantId}:1`;
-  });</script>
+  let checkoutUrl = `/checkout?package=small-group`;
+  if(price) checkoutUrl += `&price=${encodeURIComponent(price)}`;
+  if(plan) checkoutUrl += `&plan=${encodeURIComponent(plan)}`;
+  checkoutBtn.setAttribute('href', checkoutUrl);
+});
+</script>
