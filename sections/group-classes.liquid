@@ -5,41 +5,42 @@
       <div class="group-classes-hero__content">
         <h1>Group Classes</h1>
         <p>
-          Join interactive lessons with peers and stay motivated together.<br>          Certified instructors guide you through each session.
+          Join interactive lessons with peers and stay motivated together.<br>
+          Certified instructors guide you through each session.
         </p>
         <ul class="features">
-          <li>Engaging group environment</li>
-          <li>Experienced instructors</li>
+          <li>Small class size (max 5)</li>
+          <li>Focused attention</li>
           <li>60-minute live sessions</li>
-          <li>Learn from peers</li>
-          <li>Resources included</li>
-          <li>Track progress together</li>
+          <li>Interactive activities</li>
+          <li>Digital materials included</li>
+          <li>Monthly progress reports</li>
         </ul>
         <div class="info-note">
           <small>Questions? <a href="/contact">Contact us</a> for custom plans!</small>
         </div>
-        <!-- COURSE INFO PARAGRAF YENI TASARIM -->
+        <!-- COURSE INFO PARAGRAF YENİ TASARIM -->
         <div class="course-info-text">
           <p>
-            Each month, your class meets for <b>20 live lessons</b>, each lasting <b>60 minutes</b>. Experienced instructors foster a lively atmosphere for peer interaction. Sessions mix conversation, grammar, and real-world topics, with digital materials included. Whether you're building confidence or fluency, our classes offer the perfect blend of structure and engagement.
+            Each month, your small group meets for <b>20 live lessons</b>, with every session lasting <b>60 minutes</b>. Classes are led by expert Spanish tutors who create an interactive and supportive environment, ensuring that every student participates and practices real communication. Lessons combine conversation, grammar, and practical topics, and all materials are provided digitally at no extra cost. Whether you want to build confidence or improve fluency, this group format offers the perfect balance of structure, interaction, and fun.
           </p>
           <p>
-            Throughout the program, you'll receive personal feedback and progress checks to stay motivated. The curriculum adapts to your group's needs so you can focus on what matters most. Join our community and boost your skills together.
+            Throughout the course, you'll benefit from personalized feedback and regular check-ins to help you stay motivated and track your progress. Our flexible curriculum adapts to the needs and interests of each group, so you can focus on topics that matter most to you. Join a supportive community of learners and take your language skills to the next level—all in an encouraging, group-classes setting.
           </p>
         </div>
       </div>
       <!-- SAĞ: Görsel + Checkout Cart + Dışarıda Buton -->
       <div class="group-classes-hero__visual">
-        <img class="group-classes-hero__image" src="https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_16_05_40.png?v=1751979982" loading="lazy" />
+        <img class="group-classes-hero__image" src="https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_15_59_49.png?v=1751979612" alt="Online English Tutoring, AI generated" loading="lazy" />
         <div class="group-classes-cart-box">
           <div class="cart-title">Your Selection</div>
           <div class="cart-package"><strong>Group Classes</strong></div>
           <div class="cart-plan">Plan: <span id="cartPlanName">Monthly</span></div>
           <div class="cart-price" id="cartPrice">$49.99</div>
           <ul class="cart-benefits">
-            <li>Up to 10 students</li>
-            <li>Interactive class</li>
-            <li>Fixed weekly schedule</li>
+            <li>Up to 5 students</li>
+            <li>Group collaboration</li>
+            <li>Set schedule</li>
             <li>Materials included</li>
           </ul>
           <div class="cart-note">
@@ -128,7 +129,7 @@ body {
   margin-bottom: 1.1rem;
 }
 
-/* ------ YENI FERAH COURSE INFO TASARIMI ------ */
+/* ------ YENİ FERAH COURSE INFO TASARIMI ------ */
 .course-info-text {
   margin: 2.6rem 0 0 0;
   padding: 0;
@@ -155,6 +156,7 @@ body {
   }
 }
 /* ------------------------------------------- */
+
 /* --- VISUAL SIDE --- */
 .group-classes-hero__visual {
   flex: 1 1 380px;
@@ -171,7 +173,6 @@ body {
   object-fit: cover;
   background: #f8fafc;
   margin-bottom: 0.5rem;
-  /* Köşeli ve gölgesiz! */
   border-radius: 0 !important;
   box-shadow: none !important;
 }
@@ -298,9 +299,49 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('cartPrice').textContent = price ? price : '$49.99';
   document.getElementById('cartPlanName').textContent = plan;
   const checkoutBtn = document.getElementById('checkoutBtn');
-  let checkoutUrl = `/checkout?package=group-classes`;
-  if(price) checkoutUrl += `&price=${encodeURIComponent(price)}`;
-  if(plan) checkoutUrl += `&plan=${encodeURIComponent(plan)}`;
-  checkoutBtn.setAttribute('href', checkoutUrl);
+  const variantMap = {
+    'Monthly': 'VARIANT_ID_MONTHLY',
+    '3-Month': 'VARIANT_ID_3_MONTH',
+    '12-Month': 'VARIANT_ID_12_MONTH'
+  };
+  const sellingPlanMap = {
+    'Monthly': 'PLAN_ID_MONTHLY',
+    '3-Month': 'PLAN_ID_3_MONTH',
+    '12-Month': 'PLAN_ID_12_MONTH'
+  };
+  const variantId = variantMap[plan] || variantMap['Monthly'];
+  const sellingPlanId = sellingPlanMap[plan] || sellingPlanMap['Monthly'];
+  checkoutBtn.setAttribute('href', `/cart/${variantId}:1`);
+  checkoutBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch('https://3ex25w-1k.myshopify.com/api/unstable/graphql.json?operation_name=cartCreate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        query: `mutation cartCreate($input:CartInput!$country:CountryCode$language:LanguageCode$withCarrierRates:Boolean=false)@inContext(country:$country language:$language){result:cartCreate(input:$input){...@defer(if:$withCarrierRates){cart{...CartParts}errors:userErrors{...on CartUserError{message field code}}warnings:warnings{...on CartWarning{code}}}}}fragment CartParts on Cart{id checkoutUrl deliveryGroups(first:10 withCarrierRates:$withCarrierRates){edges{node{id groupType selectedDeliveryOption{code title handle deliveryPromise deliveryMethodType estimatedCost{amount currencyCode}}deliveryOptions{code title handle deliveryPromise deliveryMethodType estimatedCost{amount currencyCode}}}}}cost{subtotalAmount{amount currencyCode}totalAmount{amount currencyCode}totalTaxAmount{amount currencyCode}totalDutyAmount{amount currencyCode}}discountAllocations{discountedAmount{amount currencyCode}...on CartCodeDiscountAllocation{code}...on CartAutomaticDiscountAllocation{title}...on CartCustomDiscountAllocation{title}}discountCodes{code applicable}lines(first:10){edges{node{quantity cost{subtotalAmount{amount currencyCode}totalAmount{amount currencyCode}}discountAllocations{discountedAmount{amount currencyCode}...on CartCodeDiscountAllocation{code}...on CartAutomaticDiscountAllocation{title}...on CartCustomDiscountAllocation{title}}merchandise{...on ProductVariant{requiresShipping}}sellingPlanAllocation{priceAdjustments{price{amount currencyCode}}sellingPlan{billingPolicy{...on SellingPlanRecurringBillingPolicy{interval intervalCount}}priceAdjustments{orderCount}recurringDeliveries}}}}}}`,
+        variables: {
+          country: 'TR',
+          input: {
+            discountCodes: [],
+            lines: [{
+              attributes: [],
+              merchandiseId: `gid://shopify/ProductVariant/${variantId}`,
+              quantity: 1,
+              sellingPlanId: `gid://shopify/SellingPlan/${sellingPlanId}`
+            }]
+          },
+          language: 'EN'
+        }
+      })
+    }).then(r => r.json()).then(data => {
+      const url = data && data.data && data.data.result && data.data.result.cart && data.data.result.cart.checkoutUrl;
+      if (url) {
+        window.location.href = url;
+      } else {
+        window.location.href = `/cart/${variantId}:1`;
+      }
+    }).catch(() => {
+      window.location.href = `/cart/${variantId}:1`;
+    });
+  });</script>
 
-});</script>
