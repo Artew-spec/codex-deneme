@@ -1,0 +1,350 @@
+<section class="small-group-hero-bg">
+  <div class="small-group-hero page-width">
+    <div class="small-group-hero__main">
+      <!-- SOL: Bilgi -->
+      <div class="small-group-hero__content">
+        <h1>Small Group</h1>
+        <p>
+          Learn together in a small setting of up to five learners.<br>
+          Experienced tutors keep you on track with engaging lessons.
+        </p>
+        <ul class="features">
+          <li>Small class size (max 5)</li>
+          <li>Focused attention</li>
+          <li>60-minute live sessions</li>
+          <li>Interactive activities</li>
+          <li>Digital materials included</li>
+          <li>Monthly progress reports</li>
+        </ul>
+        <div class="info-note">
+          <small>Questions? <a href="/contact">Contact us</a> for custom plans!</small>
+        </div>
+        <!-- COURSE INFO PARAGRAF YENİ TASARIM -->
+        <div class="course-info-text">
+          <p>
+            Each month, your small group meets for <b>20 live lessons</b>, with every session lasting <b>60 minutes</b>. Classes are led by expert Spanish tutors who create an interactive and supportive environment, ensuring that every student participates and practices real communication. Lessons combine conversation, grammar, and practical topics, and all materials are provided digitally at no extra cost. Whether you want to build confidence or improve fluency, this group format offers the perfect balance of structure, interaction, and fun.
+          </p>
+          <p>
+            Throughout the course, you'll benefit from personalized feedback and regular check-ins to help you stay motivated and track your progress. Our flexible curriculum adapts to the needs and interests of each group, so you can focus on topics that matter most to you. Join a supportive community of learners and take your language skills to the next level—all in an encouraging, small-group setting.
+          </p>
+        </div>
+      </div>
+      <!-- SAĞ: Görsel + Checkout Cart + Dışarıda Buton -->
+      <div class="small-group-hero__visual">
+        <img class="small-group-hero__image" src="https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_15_59_49.png?v=1751979612" alt="Online English Tutoring, AI generated" loading="lazy" />
+        <div class="small-group-cart-box">
+          <div class="cart-title">Your Selection</div>
+          <div class="cart-package"><strong>Small Group</strong></div>
+          <div class="cart-plan">Plan: <span id="cartPlanName">Monthly</span></div>
+          <div class="cart-price" id="cartPrice">$79.99</div>
+          <ul class="cart-benefits">
+            <li>Up to 5 students</li>
+            <li>Group collaboration</li>
+            <li>Set schedule</li>
+            <li>Materials included</li>
+          </ul>
+          <div class="cart-note">
+            <small>* All prices include VAT. Each session is 60 minutes.</small>
+          </div>
+        </div>
+        <!-- Buton KUTUNUN DIŞINDA ve köşeli -->
+        <a id="checkoutBtn" href="/checkout" class="button checkout-mat">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+body {
+  background: linear-gradient(120deg, #f7faff 0%, #edf1fc 42%, #e6eafb 100%) !important;
+}
+.small-group-hero-bg {
+  background: linear-gradient(105deg, #ffffff 60%, #e7e9fb 100%);
+  min-height: 80vh;
+  padding-top: 40px;
+  padding-bottom: 0;
+}
+.small-group-hero {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+.small-group-hero__main {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.small-group-hero__content {
+  flex: 2 1 430px;
+  min-width: 320px;
+  max-width: 600px;
+  padding: 2.3rem 1.3rem 2.1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: none;
+}
+.small-group-hero__content h1 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #21264b;
+  margin-bottom: 0.8rem;
+}
+.small-group-hero__content p {
+  font-size: 1.18rem;
+  color: #31315b;
+  margin-bottom: 1.3rem;
+}
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 1.1rem 0 1.1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.7rem;
+  margin-bottom: 1.4rem;
+}
+.features li {
+  position: relative;
+  padding-left: 1.23rem;
+  font-size: 1.05rem;
+  color: #28305e;
+  flex: 0 0 220px;
+  margin-bottom: 0.2rem;
+}
+.features li:before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #4e54c8;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.info-note {
+  margin-top: 0.6rem;
+  color: #4e54c8;
+  font-size: 0.96rem;
+  margin-bottom: 1.1rem;
+}
+
+/* ------ YENİ FERAH COURSE INFO TASARIMI ------ */
+.course-info-text {
+  margin: 2.6rem 0 0 0;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 1.11rem;
+  color: #232a36;
+  line-height: 1.82;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  max-width: 750px;
+}
+.course-info-text p {
+  margin-bottom: 1.35rem;
+}
+@media (max-width: 900px) {
+  .course-info-text {
+    font-size: 1.04rem;
+    margin: 2rem 0 0 0;
+    max-width: 100%;
+  }
+  .course-info-text p {
+    margin-bottom: 1.05rem;
+  }
+}
+/* ------------------------------------------- */
+
+/* --- VISUAL SIDE --- */
+.small-group-hero__visual {
+  flex: 1 1 380px;
+  min-width: 290px;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.1rem;
+}
+.small-group-hero__image {
+  width: 100%;
+  max-width: 340px;
+  object-fit: cover;
+  background: #f8fafc;
+  margin-bottom: 0.5rem;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.small-group-cart-box {
+  width: 100%;
+  max-width: 340px;
+  padding: 2rem 1.6rem 1.5rem 1.6rem;
+  background: #fff;
+  box-shadow: none;
+  border-radius: 0 !important;
+  border: 1.5px solid #e4e7f0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 0;
+  margin-bottom: 1.15rem;
+}
+.cart-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #4e54c8;
+  margin-bottom: 0.7rem;
+}
+.cart-package { font-size: 1.09rem; font-weight: 600; color: #23235b; margin-bottom: 0.3rem; }
+.cart-plan { margin-bottom: 0.3rem; font-size: 1.01rem; color: #28305e; }
+.cart-price {
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: #4e54c8;
+  margin-bottom: 1rem;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+}
+.cart-benefits {
+  list-style: none;
+  margin: 0 0 0.7rem 0;
+  padding: 0;
+  font-size: 0.98rem;
+}
+.cart-benefits li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.3rem;
+  color: #444;
+}
+.cart-benefits li:before { content: "–"; position: absolute; left: 0; color: #8f94fb;}
+.cart-note { font-size: 0.93rem; color: #555; margin-top: 0.1rem;}
+.cart-note a { color: #4e54c8; }
+
+/* --- BUTON TAM KÖŞELİ, BEYAZ, FLICKER EFFECT --- */
+.button.checkout-mat {
+  margin-top: 16px;
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+  font-size: 1.13rem;
+  font-weight: 700;
+  background: #fff;
+  color: #4e54c8;
+  border: 2px solid #4e54c8;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.18s, border-color 0.22s, background 0.20s;
+}
+.button.checkout-mat:after {
+  content: "";
+  position: absolute;
+  top: 0; left: -60px;
+  width: 45px; height: 100%;
+  background: linear-gradient(100deg,rgba(76,107,255,0.12) 0%,rgba(80,100,250,0.13) 65%,rgba(255,255,255,0.03) 100%);
+  opacity: 1;
+  transition: left 0.33s;
+  pointer-events: none;
+}
+.button.checkout-mat:hover:after {
+  left: 110%;
+  transition: left 0.55s;
+}
+.button.checkout-mat:hover, .button.checkout-mat:focus {
+  background: #f4f7ff;
+  color: #3149cc;
+  border-color: #3149cc;
+  box-shadow: 0 6px 18px rgba(90,110,220,0.06);
+  transform: translateY(-2px) scale(1.017);
+}
+
+@media (max-width: 900px) {
+  .small-group-hero__main { flex-direction: column; gap: 22px; }
+  .small-group-hero__visual { flex-direction: row; gap: 1.5rem; justify-content: flex-start; }
+  .small-group-hero__image, .small-group-cart-box, .button.checkout-mat { max-width: 48vw; }
+  .small-group-hero__content { max-width: 100%; padding: 1.5rem 0.5rem 1.2rem 0.5rem; }
+}
+@media (max-width: 600px) {
+  .small-group-hero__visual { flex-direction: column; align-items: center; }
+  .small-group-hero__image, .small-group-cart-box, .button.checkout-mat { max-width: 100%; }
+  .small-group-cart-box { padding: 1.3rem 0.8rem; }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  const price = params.get('price');
+  let plan = "Monthly";
+  if (params.get('plan')) {
+    plan = params.get('plan')
+      .replace('monthly','Monthly')
+      .replace('quarterly','3-Month')
+      .replace('yearly','12-Month');
+  } else if (price && price.includes('69')) {
+    plan = "3-Month";
+  } else if (price && price.includes('49')) {
+    plan = "12-Month";
+  }
+  document.getElementById('cartPrice').textContent = price ? price : '$79.99';
+  document.getElementById('cartPlanName').textContent = plan;
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const variantMap = {
+    'Monthly': '47799887528176',
+    '3-Month': '47799887560944',
+    '12-Month': '47799887593712'
+  };
+  const sellingPlanMap = {
+    'Monthly': '6983975152',
+    '3-Month': '6983942384',
+    '12-Month': '6984007920'
+  };
+  const variantId = variantMap[plan] || variantMap['Monthly'];
+  const sellingPlanId = sellingPlanMap[plan] || sellingPlanMap['Monthly'];
+  checkoutBtn.setAttribute('href', `/cart/${variantId}:1`);
+  checkoutBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch('https://3ex25w-1k.myshopify.com/api/unstable/graphql.json?operation_name=cartCreate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        query:
+          `mutation cartCreate($input:CartInput!$country:CountryCode$language:LanguageCode$withCarrierRates:Boolean=false)@inContext(country:$country language:$language){result:cartCreate(input:$input){...@defer(if:$withCarrierRates){cart{...CartParts}errors:userErrors{...on CartUserError{message field code}}warnings:warnings{...on CartWarning{code}}}}}` +
+          `fragment CartParts on Cart{id checkoutUrl deliveryGroups(first:10 withCarrierRates:$withCarrierRates){edges{node{id groupType selectedDeliveryOption{code title handle deliveryPromise deliveryMethodType estimatedCost{amount currencyCode}}deliveryOptions{code title handle deliveryPromise deliveryMethodType estimatedCost{amount currencyCode}}}}}cost{subtotalAmount{amount currencyCode}totalAmount{amount currencyCode}totalTaxAmount{amount currencyCode}totalDutyAmount{amount currencyCode}}discountAllocations{discountedAmount{amount currencyCode}...on CartCodeDiscountAllocation{code}...on CartAutomaticDiscountAllocation{title}...on CartCustomDiscountAllocation{title}}discountCodes{code applicable}lines(first:10){edges{node{quantity cost{subtotalAmount{amount currencyCode}totalAmount{amount currencyCode}}discountAllocations{discountedAmount{amount currencyCode}...on CartCodeDiscountAllocation{code}...on CartAutomaticDiscountAllocation{title}...on CartCustomDiscountAllocation{title}}merchandise{...on ProductVariant{requiresShipping}}sellingPlanAllocation{priceAdjustments{price{amount currencyCode}}sellingPlan{billingPolicy{...on SellingPlanRecurringBillingPolicy{interval intervalCount}}priceAdjustments{orderCount}recurringDeliveries}}}}}}`,
+        variables: {
+          country: 'TR',
+          input: {
+            discountCodes: [],
+            lines: [{
+              attributes: [],
+              merchandiseId: `gid://shopify/ProductVariant/${variantId}`,
+              quantity: 1,
+              sellingPlanId: `gid://shopify/SellingPlan/${sellingPlanId}`
+            }]
+          },
+          language: 'EN'
+        }
+      })
+    }).then(r => r.json()).then(data => {
+      const url = data && data.data && data.data.result && data.data.result.cart && data.data.result.cart.checkoutUrl;
+      if (url) {
+        window.location.href = url;
+      } else {
+        window.location.href = `/cart/${variantId}:1`;
+      }
+    }).catch(() => {
+      window.location.href = `/cart/${variantId}:1`;
+    });
+  });
+});
+</script>
