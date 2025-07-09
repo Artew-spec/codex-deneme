@@ -304,7 +304,13 @@ document.addEventListener('DOMContentLoaded', function() {
     '3-Month': '47798731210992',
     '12-Month': '47798731243760'
   };
+  const sellingPlanMap = {
+    'Monthly': '6983975152',
+    '3-Month': '6983942384',
+    '12-Month': '6984007920'
+  };
   const variantId = variantMap[plan] || variantMap['Monthly'];
+  const sellingPlanId = sellingPlanMap[plan] || sellingPlanMap['Monthly'];
   checkoutBtn.setAttribute('href', `/cart/${variantId}:1`);
     checkoutBtn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -321,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 attributes: [],
                 merchandiseId: `gid://shopify/ProductVariant/${variantId}`,
                 quantity: 1,
-                sellingPlanId: 'gid://shopify/SellingPlan/6983942384'
+                sellingPlanId: `gid://shopify/SellingPlan/${sellingPlanId}`
               }]
             },
             language: 'EN'
@@ -336,5 +342,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }).catch(() => {
         window.location.href = `/cart/${variantId}:1`;
-      });
-    });});</script>
+      });    });});</script>
