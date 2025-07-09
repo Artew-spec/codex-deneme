@@ -299,9 +299,11 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('cartPrice').textContent = price ? price : '$199.99';
   document.getElementById('cartPlanName').textContent = plan;
   const checkoutBtn = document.getElementById('checkoutBtn');
-  let checkoutUrl = `/checkout?package=private-tutoring`;
-  if(price) checkoutUrl += `&price=${encodeURIComponent(price)}`;
-  if(plan) checkoutUrl += `&plan=${encodeURIComponent(plan)}`;
-  checkoutBtn.setAttribute('href', checkoutUrl);
-
+  const variantMap = {
+    'Monthly': '47798373155056',
+    '3-Month': '47798373187824',
+    '12-Month': '47798373220592'
+  };
+  const variantId = variantMap[plan] || variantMap['Monthly'];
+  checkoutBtn.setAttribute('href', `/cart/${variantId}:1`);
 });</script>
