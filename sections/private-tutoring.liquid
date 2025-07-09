@@ -301,9 +301,43 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkoutBtn = document.getElementById('checkoutBtn');
   const variantMap = {
     'Monthly': '47798373155056',
-    '3-Month': '47798373187824',
+    '3-Month': '47798731210992',
     '12-Month': '47798373220592'
   };
   const variantId = variantMap[plan] || variantMap['Monthly'];
   checkoutBtn.setAttribute('href', `/cart/${variantId}:1`);
+  if (plan === '3-Month') {
+    checkoutBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      fetch('https://3ex25w-1k.myshopify.com/api/unstable/graphql.json?operation_name=cartCreate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          query: `mutation cartCreate($input:CartInput!$country:CountryCode$language:LanguageCode$withCarrierRates:Boolean=false)@inContext(country:$country language:$language){result:cartCreate(input:$input){...@defer(if:$withCarrierRates){cart{...CartParts}errors:userErrors{...on CartUserError{message field code}}warnings:warnings{...on CartWarning{code}}}}}fragment CartParts on Cart{id checkoutUrl deliveryGroups(first:10 withCarrierRates:$withCarrierRates){edges{node{id groupType selectedDeliveryOption{code title handle deliveryPromise deliveryMethodType estimatedCost{amount currencyCode}}deliveryOptions{code title handle deliveryPromise deliveryMethodType estimatedCost{amount currencyCode}}}}}cost{subtotalAmount{amount currencyCode}totalAmount{amount currencyCode}totalTaxAmount{amount currencyCode}totalDutyAmount{amount currencyCode}}discountAllocations{discountedAmount{amount currencyCode}...on CartCodeDiscountAllocation{code}...on CartAutomaticDiscountAllocation{title}...on CartCustomDiscountAllocation{title}}discountCodes{code applicable}lines(first:10){edges{node{quantity cost{subtotalAmount{amount currencyCode}totalAmount{amount currencyCode}}discountAllocations{discountedAmount{amount currencyCode}...on CartCodeDiscountAllocation{code}...on CartAutomaticDiscountAllocation{title}...on CartCustomDiscountAllocation{title}}merchandise{...on ProductVariant{requiresShipping}}sellingPlanAllocation{priceAdjustments{price{amount currencyCode}}sellingPlan{billingPolicy{...on SellingPlanRecurringBillingPolicy{interval intervalCount}}priceAdjustments{orderCount}recurringDeliveries}}}}}}`,
+          variables: {
+            country: 'TR',
+            input: {
+              discountCodes: [],
+              lines: [{
+                attributes: [],
+                merchandiseId: 'gid://shopify/ProductVariant/47798731210992',
+                quantity: 1,
+                sellingPlanId: 'gid://shopify/SellingPlan/6983942384'
+              }]
+            },
+            language: 'EN'
+          }
+        })
+      }).then(r => r.json()).then(data => {
+        const url = data && data.data && data.data.result && data.data.result.cart && data.data.result.cart.checkoutUrl;
+        if (url) {
+          window.location.href = url;
+        } else {
+          window.location.href = `/cart/${variantId}:1`;
+        }
+      }).catch(() => {
+        window.location.href = `/cart/${variantId}:1`;
+      });
+    });
+  }
 });</script>
