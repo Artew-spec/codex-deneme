@@ -1,0 +1,51 @@
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {"type": "text", "id": "contact_heading", "label": "Contact Heading", "default": "Contact"},
+    {"type": "text", "id": "email", "label": "Contact Email", "default": "info@example.com"}
+  ],
+  "presets": [{"name": "Footer"}]
+}
+{% endschema %}
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-contact">
+      <h4>{{ section.settings.contact_heading }}</h4>
+      <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+    </div>
+    <nav class="footer-nav">
+      <ul>
+        <li><a href="/pages/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background: #f3f4f6;
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+.footer-nav a {
+  color: #4e54c8;
+  text-decoration: none;
+}
+</style>

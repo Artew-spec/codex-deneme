@@ -1,0 +1,43 @@
+{% schema %}
+{
+  "name": "About Section",
+  "settings": [
+    {"type": "text", "id": "heading", "label": "Heading", "default": "About Us"},
+    {"type": "textarea", "id": "text", "label": "Text", "default": "We are passionate about helping you learn."},
+    {"type": "image_picker", "id": "image", "label": "Image"}
+  ],
+  "presets": [{"name": "About Section"}]
+}
+{% endschema %}
+
+<section class="about-section">
+  <div class="page-width">
+    {% if section.settings.image %}
+      <img src="{{ section.settings.image | image_url }}" alt="{{ section.settings.heading }}" class="about-img" />
+    {% endif %}
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.text }}</p>
+  </div>
+</section>
+
+<style>
+.about-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.about-section p {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.about-img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 1rem;
+}
+</style>
