@@ -1,12 +1,13 @@
-.footer-block:only-child:last-child {
+.footer__column--info .footer-block--menu {
   text-align: left;
 }
 
 @media screen and (min-width: 750px) {
-  .footer-block:only-child li {
+  .footer__column--info .footer-block--menu li {
     display: block;
   }
-  .footer-block__details-content > li:not(:last-child) {
+
+  .footer__column--info .footer-block--menu .footer-block__details-content > li:not(:last-child) {
     margin-right: 0;
   }
 }
