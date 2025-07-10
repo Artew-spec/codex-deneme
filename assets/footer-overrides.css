@@ -1,0 +1,12 @@
+.footer-block:only-child:last-child {
+  text-align: left;
+}
+
+@media screen and (min-width: 750px) {
+  .footer-block:only-child li {
+    display: block;
+  }
+  .footer-block__details-content > li:not(:last-child) {
+    margin-right: 0;
+  }
+}
