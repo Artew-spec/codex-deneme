@@ -1,0 +1,125 @@
+{% schema %}
+{
+  "name": "Tutors",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Meet Our Top Tutors"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Our carefully vetted tutors are ready to help you succeed."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tutor",
+      "name": "Tutor",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "tutor_image",
+          "label": "Tutor Image"
+        },
+        {
+          "type": "text",
+          "id": "tutor_name",
+          "label": "Tutor Name"
+        },
+        {
+          "type": "text",
+          "id": "tutor_subject",
+          "label": "Tutor Subject"
+        },
+        {
+          "type": "textarea",
+          "id": "tutor_bio",
+          "label": "Tutor Short Bio"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tutors"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="tutors">
+  <h2>{{ section.settings.title }}</h2>
+  <p class="subtitle">{{ section.settings.subtitle }}</p>
+  <div class="tutors-grid">
+    {% for block in section.blocks %}
+      <div class="tutor-card" {{ block.shopify_attributes }}>
+        {% if block.settings.tutor_image %}
+          <img src="{{ block.settings.tutor_image | image_url }}" alt="{{ block.settings.tutor_name }}" class="tutor-image" />
+        {% endif %}
+        <h3>{{ block.settings.tutor_name }}</h3>
+        <p class="subject">{{ block.settings.tutor_subject }}</p>
+        <p class="bio">{{ block.settings.tutor_bio }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.tutors {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f3f4f6;
+}
+.tutors h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+.tutors .subtitle {
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+.tutors-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.tutor-card {
+  width: 250px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+  transition: 0.3s ease;
+}
+.tutor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.tutor-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+.subject {
+  font-weight: 600;
+  color: #4e54c8;
+  margin: 0.5rem 0;
+}
+.bio {
+  font-size: 0.9rem;
+  color: #475569;
+}
+</style>
