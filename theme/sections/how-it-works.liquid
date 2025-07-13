@@ -1,0 +1,101 @@
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "How It Works"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Follow these simple steps to get started"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Step Image" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "textarea", "id": "text", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "How It Works" }
+  ]
+}
+{% endschema %}
+
+<section id="how-it-works" class="how-it-works">
+  <div class="page-width">
+    <h2>{{ section.settings.title }}</h2>
+    {% if section.settings.subtitle != blank %}
+      <p class="subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+    <div class="how-steps">
+      {% for block in section.blocks %}
+        <div class="how-step" {{ block.shopify_attributes }}>
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | image_url }}" alt="{{ block.settings.heading }}">
+          {% endif %}
+          <h3>{{ block.settings.heading }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.how-it-works {
+  padding: 20px 20px;
+  background: #f9fafb;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.how-it-works h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.how-it-works .subtitle {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+.how-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 100px;
+}
+.how-step {
+  max-width: 260px;
+}
+.how-step img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.25rem;
+}
+.how-step h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.how-step p {
+  color: #4b5563;
+  font-size: 1rem;
+}
+@media (max-width: 700px) {
+  .how-step {
+    max-width: 100%;
+  }
+  .how-steps {
+    gap: 30px;
+  }
+}
+</style>
