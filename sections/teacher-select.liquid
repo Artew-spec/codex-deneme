@@ -33,7 +33,42 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  const pkg = params.get('package') || 'private-tutoring';
+  const price = params.get('price') || '$199.99';
+  let plan = 'Monthly';
+  if (params.get('plan')) {
+    plan = params.get('plan')
+      .replace('monthly','Monthly')
+      .replace('quarterly','3-Month')
+      .replace('yearly','12-Month');
+  } else if (price.includes('179')) {
+    plan = '3-Month';
+  } else if (price.includes('119')) {
+    plan = '12-Month';
+  }
+
+  const imageMap = {
+    'private-tutoring': 'https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_7_Tem_2025_15_58_34.png?v=1751893408',
+    'small-group': 'https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_15_59_49.png?v=1751979612',
+    'group-classes': 'https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_16_05_40.png?v=1751979982'
+  };
+  const nameMap = {
+    'private-tutoring': 'Private Tutoring',
+    'small-group': 'Small Group',
+    'group-classes': 'Group Classes'
+  };
+
+  document.querySelector('.teacher-select__image').src = imageMap[pkg] || '';
+  document.querySelector('.cart-package').innerHTML = `<strong>${nameMap[pkg] || ''}</strong>`;
+  document.querySelector('.cart-plan').textContent = plan;
+  document.querySelector('.cart-price').textContent = price;
+
   const btn = document.getElementById('continueBtn');
+  const base = `/pages/${pkg}`;
+  const continueUrl = new URL(base, window.location.origin);
+  continueUrl.searchParams.set('price', price);
+  btn.setAttribute('href', continueUrl.toString());
   btn.addEventListener('click', function(e) {
     e.preventDefault();
     const sel = document.querySelector('.tutor-radio:checked');
