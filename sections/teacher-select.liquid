@@ -6,13 +6,15 @@
         <p>{{ section.settings.subheading }}</p>
         <div class="tutors-list">
           {% for block in section.blocks %}
-            <label class="tutor-card">
-              <input type="radio" name="teacher" value="{{ block.settings.name }}" class="tutor-radio" {% if forloop.first %}checked{% endif %}>
-              <div class="tutor-info">
-                <h4 class="tutor-name">{{ block.settings.name }}</h4>
-                <p class="tutor-desc">{{ block.settings.description }}</p>
-              </div>
-            </label>
+            <div class="tutor-option">
+              <input type="radio" id="tutor-{{ forloop.index }}" name="teacher" value="{{ block.settings.name }}" class="tutor-radio" {% if forloop.first %}checked{% endif %}>
+              <label for="tutor-{{ forloop.index }}" class="tutor-card">
+                <div class="tutor-info">
+                  <h4 class="tutor-name">{{ block.settings.name }}</h4>
+                  <p class="tutor-desc">{{ block.settings.description }}</p>
+                </div>
+              </label>
+            </div>
           {% endfor %}
         </div>
       </div>
@@ -114,30 +116,34 @@ document.addEventListener('DOMContentLoaded', function() {
   margin-bottom: 1.3rem;
 }
 .tutors-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.tutor-option {
+  position: relative;
+}
+.tutor-radio {
+  display: none;
 }
 .tutor-card {
   display: block;
   cursor: pointer;
-  background: rgba(78, 84, 200, 0.1);
-  border: 1px solid rgba(78, 84, 200, 0.3);
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  max-width: 420px;
-}
-.tutor-card input {
-  display: none;
+  background: rgba(78, 84, 200, 0.05);
+  border: 2px solid rgba(78, 84, 200, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 .tutor-card .tutor-info {
   font-size: 1rem;
   line-height: 1.35;
   color: #21264b;
 }
-.tutor-card input:checked + .tutor-info {
-  background: rgba(78, 84, 200, 0.2);
-  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.8);
+.tutor-radio:checked + .tutor-card {
+  background: rgba(78, 84, 200, 0.15);
+  border-color: rgba(78, 84, 200, 0.8);
+  box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.5);
 }
 .teacher-select__visual {
   flex: 1 1 380px;
