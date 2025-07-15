@@ -4,21 +4,17 @@
       <div class="teacher-select__content">
         <h1>{{ section.settings.heading }}</h1>
         <p>{{ section.settings.subheading }}</p>
-        <div class="tutors-grid">
+        <div class="tutors-list">
           {% for block in section.blocks %}
-            <label class="tutor-card">
+            <label class="tutor-option">
               <input type="radio" name="teacher" value="{{ block.settings.name }}" class="tutor-radio" {% if forloop.first %}checked{% endif %}>
-              <img class="tutor-photo" src="{{ block.settings.photo | img_url: 'medium' }}" alt="{{ block.settings.name }}">
-              <div class="tutor-info">
-                <div class="tutor-name">{{ block.settings.name }}</div>
-                <div class="tutor-role">{{ block.settings.role }}</div>
-              </div>
+              <span class="tutor-name">{{ block.settings.name }}</span>
             </label>
           {% endfor %}
         </div>
       </div>
       <div class="teacher-select__visual">
-        <img class="teacher-select__image" src="{{ section.settings.package_image | img_url: 'medium' }}" alt="">
+        <img class="teacher-select__image" src="" alt="">
         <div class="package-box">
           <div class="cart-title">Your Selection</div>
           <div class="cart-package"><strong>{{ section.settings.package_name }}</strong></div>
@@ -48,18 +44,14 @@ document.addEventListener('DOMContentLoaded', function() {
     plan = '12-Month';
   }
 
-  const imageMap = {
-    'private-tutoring': 'https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_7_Tem_2025_15_58_34.png?v=1751893408',
-    'small-group': 'https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_15_59_49.png?v=1751979612',
-    'group-classes': 'https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_8_Tem_2025_16_05_40.png?v=1751979982'
-  };
+  const packageImage = 'https://cdn.shopify.com/s/files/1/0759/1546/0848/files/ChatGPT_Image_10_Tem_2025_12_58_03.png?v=1752142931';
   const nameMap = {
     'private-tutoring': 'Private Tutoring',
     'small-group': 'Small Group',
     'group-classes': 'Group Classes'
   };
 
-  document.querySelector('.teacher-select__image').src = imageMap[pkg] || '';
+  document.querySelector('.teacher-select__image').src = packageImage;
   document.querySelector('.cart-package').innerHTML = `<strong>${nameMap[pkg] || ''}</strong>`;
   document.querySelector('.cart-plan').textContent = plan;
   document.querySelector('.cart-price').textContent = price;
@@ -118,31 +110,27 @@ document.addEventListener('DOMContentLoaded', function() {
   color: #31315b;
   margin-bottom: 1.3rem;
 }
-.tutor-card {
+.tutors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.tutor-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   cursor: pointer;
-  border: 2px solid transparent;
+  font-size: 1rem;
 }
 .tutor-radio {
-  display: none;
+  accent-color: #4e54c8;
 }
-.tutor-radio:checked + img + .tutor-info {
+.tutor-option input[type="radio"] {
+  margin: 0;
 }
-.tutor-radio:checked ~ .tutor-info,
-.tutor-radio:checked {
-}
-.tutor-radio:checked + img,
-.tutor-radio:checked + img + .tutor-info {
-}
-.tutor-radio:checked.parent {
-}
-.tutor-card input:checked ~ .tutor-info .tutor-name {
-}
-.tutor-card input:checked ~ img {
-  box-shadow: 0 0 0 2px #4e54c8;
-  border-radius: 50%;
-}
-.tutor-card input:checked ~ .tutor-info {
+.tutor-option input:checked + .tutor-name {
   color: #4e54c8;
+  font-weight: 600;
 }
 .teacher-select__visual {
   flex: 1 1 380px;
@@ -248,17 +236,14 @@ document.addEventListener('DOMContentLoaded', function() {
     {"type": "text", "id": "package_name", "label": "Package Name", "default": "Private Tutoring"},
     {"type": "text", "id": "package_plan", "label": "Plan", "default": "Monthly"},
     {"type": "text", "id": "package_price", "label": "Price", "default": "$0"},
-    {"type": "url", "id": "continue_url", "label": "Continue URL", "default": "/"},
-    {"type": "image_picker", "id": "package_image", "label": "Package Image"}
+    {"type": "url", "id": "continue_url", "label": "Continue URL", "default": "/"}
   ],
   "blocks": [
     {
       "type": "teacher",
       "name": "Teacher",
       "settings": [
-        {"type": "image_picker", "id": "photo", "label": "Photo"},
-        {"type": "text", "id": "name", "label": "Name"},
-        {"type": "text", "id": "role", "label": "Role"}
+        {"type": "text", "id": "name", "label": "Name"}
       ]
     }
   ],

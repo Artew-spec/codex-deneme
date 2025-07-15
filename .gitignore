@@ -9,4 +9,5 @@ templates/*
 # Re-include new section and template
 !sections/teacher-select.liquid
 !sections/teacher-matching.liquid
+!sections/featured-tutors.liquid
 !templates/page.teacher-select.json
