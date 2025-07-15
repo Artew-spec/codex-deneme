@@ -1,0 +1,11 @@
+# Ignore all theme directories
+assets/
+config/
+layout/
+locales/
+sections/*
+snippets/
+templates/*
+# Re-include new section and template
+!sections/teacher-select.liquid
+!templates/page.teacher-select.json
