@@ -6,9 +6,12 @@
         <p>{{ section.settings.subheading }}</p>
         <div class="tutors-list">
           {% for block in section.blocks %}
-            <label class="tutor-option">
+            <label class="tutor-card">
               <input type="radio" name="teacher" value="{{ block.settings.name }}" class="tutor-radio" {% if forloop.first %}checked{% endif %}>
-              <span class="tutor-name">{{ block.settings.name }}</span>
+              <div class="tutor-info">
+                <h4 class="tutor-name">{{ block.settings.name }}</h4>
+                <p class="tutor-desc">{{ block.settings.description }}</p>
+              </div>
             </label>
           {% endfor %}
         </div>
@@ -115,22 +118,26 @@ document.addEventListener('DOMContentLoaded', function() {
   flex-direction: column;
   gap: 0.75rem;
 }
-.tutor-option {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.tutor-card {
+  display: block;
   cursor: pointer;
+  background: rgba(78, 84, 200, 0.1);
+  border: 1px solid rgba(78, 84, 200, 0.3);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  max-width: 420px;
+}
+.tutor-card input {
+  display: none;
+}
+.tutor-card .tutor-info {
   font-size: 1rem;
+  line-height: 1.35;
+  color: #21264b;
 }
-.tutor-radio {
-  accent-color: #4e54c8;
-}
-.tutor-option input[type="radio"] {
-  margin: 0;
-}
-.tutor-option input:checked + .tutor-name {
-  color: #4e54c8;
-  font-weight: 600;
+.tutor-card input:checked + .tutor-info {
+  background: rgba(78, 84, 200, 0.2);
+  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.8);
 }
 .teacher-select__visual {
   flex: 1 1 380px;
@@ -243,7 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "teacher",
       "name": "Teacher",
       "settings": [
-        {"type": "text", "id": "name", "label": "Name"}
+        {"type": "text", "id": "name", "label": "Name"},
+        {"type": "textarea", "id": "description", "label": "Description"}
       ]
     }
   ],
