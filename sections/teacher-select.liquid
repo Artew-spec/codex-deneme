@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 .teacher-select-bg {
   background: linear-gradient(105deg, #ffffff 60%, #e7e9fb 100%);
   padding-top: 40px;
@@ -128,7 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 .tutor-card {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   width: 791px;
   height: 216px;
   max-width: 100%;
@@ -142,10 +146,12 @@ document.addEventListener('DOMContentLoaded', function() {
   transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 .tutor-card .tutor-info {
-  font-size: 1rem;
-  line-height: 1.35;
+  font-size: 1.6rem;
+  line-height: 1.4;
   color: #21264b;
+  font-family: 'Poppins', sans-serif;
 }
+.tutor-name { font-size: 2rem; font-weight: 600; }
 .tutor-radio:checked + .tutor-card {
   background: rgba(78, 84, 200, 0.15);
   border-color: rgba(78, 84, 200, 0.8);
