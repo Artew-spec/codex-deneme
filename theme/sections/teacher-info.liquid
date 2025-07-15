@@ -1,0 +1,29 @@
+{% style %}
+.teacher-info { text-align: center; padding: 40px 20px; }
+.teacher-info img { max-width: 300px; width: 100%; margin: 0 auto 1rem; border-radius: 8px; }
+.teacher-info h2 { margin-bottom: 1rem; }
+.teacher-info p { max-width: 700px; margin: 0 auto; line-height: 1.6; }
+{% endstyle %}
+
+<div class="teacher-info">
+  {% if section.settings.image %}
+    <img src="{{ section.settings.image | image_url }}" alt="{{ section.settings.name }}">
+  {% endif %}
+  <h2>{{ section.settings.name }}</h2>
+  <p>{{ section.settings.bio }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Teacher Info",
+  "tag": "section",
+  "settings": [
+    {"type": "image_picker", "id": "image", "label": "Image"},
+    {"type": "text", "id": "name", "label": "Name"},
+    {"type": "textarea", "id": "bio", "label": "Biography"}
+  ],
+  "presets": [
+    {"name": "Teacher Info"}
+  ]
+}
+{% endschema %}

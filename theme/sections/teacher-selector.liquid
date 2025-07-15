@@ -1,0 +1,63 @@
+{% style %}
+.teacher-selector { text-align: center; padding: 40px 20px; }
+.teacher-option { display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+.teacher-option img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-right: 0.75rem; }
+.teacher-option input { margin-right: 0.5rem; }
+.teacher-option .learn-more { margin-left: auto; }
+#teacher-checkout[disabled] { opacity: 0.5; pointer-events: none; }
+{% endstyle %}
+
+<div class="teacher-selector">
+  {% for block in section.blocks %}
+    <div class="teacher-option" data-teacher="{{ block.id }}">
+      <input type="radio" name="teacher" id="teacher-{{ block.id }}">
+      {% if block.settings.image %}
+        <img src="{{ block.settings.image | image_url: width: 80 }}" alt="{{ block.settings.name }}">
+      {% endif %}
+      <label for="teacher-{{ block.id }}">{{ block.settings.name }}</label>
+      {% if block.settings.info_link != blank %}
+        <a class="learn-more button button--secondary" href="{{ block.settings.info_link }}">{{ block.settings.info_text }}</a>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <a href="/checkout" class="button" id="teacher-checkout" disabled>{{ section.settings.button_text }}</a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var checkoutButton = document.getElementById('teacher-checkout');
+  document.querySelectorAll('.teacher-option input').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      if (radio.checked) {
+        checkoutButton.removeAttribute('disabled');
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Teacher Selector",
+  "tag": "section",
+  "class": "teacher-selector-section",
+  "settings": [
+    {"type": "text", "id": "button_text", "label": "Checkout button text", "default": "Proceed to Checkout"}
+  ],
+  "blocks": [
+    {
+      "type": "teacher",
+      "name": "Teacher",
+      "settings": [
+        {"type": "image_picker", "id": "image", "label": "Image"},
+        {"type": "text", "id": "name", "label": "Name"},
+        {"type": "url", "id": "info_link", "label": "Info page link"},
+        {"type": "text", "id": "info_text", "label": "Info button text", "default": "More Info"}
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "Teacher Selector"}
+  ]
+}
+{% endschema %}
