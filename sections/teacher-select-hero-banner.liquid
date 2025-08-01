@@ -1,0 +1,50 @@
+{% schema %}
+{
+  "name": "Teacher Select Hero Banner",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Ready to start learning?" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Find your perfect tutor today." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Browse Tutors" },
+    { "type": "url", "id": "button_link", "label": "Button link", "default": "/" }
+  ],
+  "presets": [
+    { "name": "Teacher Select Hero Banner", "category": "Custom" }
+  ]
+}
+{% endschema %}
+
+<section class="teacher-select-hero-banner">
+  <div class="teacher-select-hero-banner__inner page-width">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.subheading }}</p>
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="button teacher-select-hero-button">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+.teacher-select-hero-banner {
+  background: linear-gradient(90deg, #eef1ff 0%, #dfe4ff 100%);
+  padding: 40px 20px;
+  text-align: center;
+}
+.teacher-select-hero-banner__inner h2 {
+  color: #21264b;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+.teacher-select-hero-banner__inner p {
+  color: #555;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.teacher-select-hero-button {
+  background: #4e54c8;
+  color: #fff;
+  padding: 0.8em 2em;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 0;
+}
+</style>
