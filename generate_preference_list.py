@@ -30,16 +30,22 @@ def parse_args():
     return parser.parse_args()
 
 
+def _normalize(txt: str) -> str:
+    return ''.join(
+        c for c in unicodedata.normalize("NFD", txt) if unicodedata.category(c) != "Mn"
+    ).upper()
+
+
 def extract_city(uni: str) -> str:
     if not uni:
         return None
     m = re.search(r"\(([^()]+)\)", uni)
     if m:
-        inner = ''.join(c for c in unicodedata.normalize('NFD', m.group(1)) if unicodedata.category(c) != 'Mn').upper()
-        if 'UNIVERSITESI' not in inner:
-            return m.group(1).strip().upper()
-    base = ''.join(c for c in unicodedata.normalize('NFD', uni) if unicodedata.category(c) != 'Mn').upper()
-    return base.split('UNIVERSITESI')[0].split()[0].strip()
+        inner_norm = _normalize(m.group(1))
+        if "UNIVERSITESI" not in inner_norm:
+            return inner_norm
+    base = _normalize(uni)
+    return base.split("UNIVERSITESI")[0].split()[0].strip()
 
 
 def categorize(name: str):
