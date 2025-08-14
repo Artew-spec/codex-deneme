@@ -1,0 +1,174 @@
+{% schema %}
+{
+  "name": "Featured Tutors",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Choose Your Teacher"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Select the tutor that fits you best."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tutor",
+      "name": "Tutor",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "tutor_image",
+          "label": "Tutor Image"
+        },
+        {
+          "type": "text",
+          "id": "tutor_name",
+          "label": "Tutor Name"
+        },
+        {
+          "type": "text",
+          "id": "tutor_subject",
+          "label": "Tutor Subject"
+        },
+        {
+          "type": "textarea",
+          "id": "tutor_bio",
+          "label": "Tutor Short Bio"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Tutors"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="tutorx-featured-tutors">
+  <h2 class="tutorx-title">{{ section.settings.title }}</h2>
+  <p class="tutorx-subtitle">{{ section.settings.subtitle }}</p>
+  <div class="tutorx-tutors-grid">
+    {% for block in section.blocks %}
+      <div class="tutorx-tutor-card" data-name="{{ block.settings.tutor_name }}" {{ block.shopify_attributes }}>
+        {% if block.settings.tutor_image %}
+          <img src="{{ block.settings.tutor_image | image_url }}" alt="{{ block.settings.tutor_name }}" class="tutorx-tutor-image" />
+        {% endif %}
+        <h3 class="tutorx-tutor-name">{{ block.settings.tutor_name }}</h3>
+        <p class="tutorx-subject">{{ block.settings.tutor_subject }}</p>
+        <p class="tutorx-bio">{{ block.settings.tutor_bio }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.tutorx-featured-tutors {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f3f4f6;
+}
+.tutorx-title {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+.tutorx-subtitle {
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+.tutorx-tutors-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.tutorx-tutor-card {
+  width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.tutorx-tutor-card.selected {
+  border: 2px solid #4e54c8;
+}
+.tutorx-tutor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.tutorx-tutor-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+.tutorx-tutor-name {
+  font-size: 1.14rem;
+  font-weight: 700;
+  color: #23235b;
+  margin-bottom: 0.18rem;
+}
+.tutorx-subject {
+  font-weight: 600;
+  color: #4e54c8;
+  margin: 0.5rem 0 0.45rem 0;
+}
+.tutorx-bio {
+  font-size: 0.97rem;
+  color: #475569;
+  text-align: left;
+  margin: 0 auto;
+  line-height: 1.55;
+  min-height: 80px;
+}
+@media (max-width: 600px) {
+  .tutorx-tutors-grid {
+    flex-direction: column;
+    gap: 22px;
+  }
+  .tutorx-tutor-card {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  padding: 18px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.tutorx-tutor-card');
+  const params = new URLSearchParams(window.location.search);
+  const current = params.get('teacher');
+
+  cards.forEach(card => {
+    const name = card.dataset.name;
+    if (current === name) card.classList.add('selected');
+    card.addEventListener('click', () => {
+      params.set('teacher', name);
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      window.history.replaceState({}, '', newUrl);
+      cards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    });
+  });
+});
+</script>
