@@ -159,12 +159,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
   const current = params.get('teacher');
   const bookButtons = document.querySelectorAll('#checkoutBtn, .book-now');
-  const baseBookUrl = '/pages/teacher-matching';
 
   function updateBookLinks(teacher) {
     bookButtons.forEach(btn => {
-      const url = new URL(baseBookUrl, window.location.origin);
-      if (teacher) url.searchParams.set('teacher', teacher);
+      const url = new URL(btn.getAttribute('href'), window.location.origin);
+      if (teacher) {
+        url.searchParams.set('teacher', teacher);
+      } else {
+        url.searchParams.delete('teacher');
+      }
       btn.setAttribute('href', url.pathname + url.search);
     });
   }
