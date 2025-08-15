@@ -158,6 +158,22 @@ document.addEventListener('DOMContentLoaded', function() {
   const cards = document.querySelectorAll('.tutorx-tutor-card');
   const params = new URLSearchParams(window.location.search);
   const current = params.get('teacher');
+  const bookButtons = document.querySelectorAll('#checkoutBtn, .book-now');
+  const baseBookUrl = '/pages/teacher-matching';
+
+  function updateBookLinks(teacher) {
+    bookButtons.forEach(btn => {
+      const url = new URL(baseBookUrl, window.location.origin);
+      if (teacher) url.searchParams.set('teacher', teacher);
+      btn.setAttribute('href', url.pathname + url.search);
+    });
+  }
+
+  if (current) {
+    updateBookLinks(current);
+  } else {
+    updateBookLinks();
+  }
 
   cards.forEach(card => {
     const name = card.dataset.name;
@@ -168,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.history.replaceState({}, '', newUrl);
       cards.forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
+      updateBookLinks(name);
     });
   });
 });
