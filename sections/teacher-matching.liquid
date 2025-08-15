@@ -134,7 +134,7 @@
             <li>Weekly progress reports</li>
           </ul>
         </div>
-        <a href="/pages/teacher-matching?package=private-tutoring" class="button button--primary book-now">Book Now</a>
+        <a href="/pages/private-tutoring" data-base="/pages/private-tutoring" class="button button--primary book-now">Book Now</a>
       </div>
     </div>
 
@@ -181,7 +181,7 @@
             <li>Monthly progress reports</li>
           </ul>
         </div>
-        <a href="/pages/teacher-matching?package=small-group" class="button button--primary book-now">Book Now</a>
+        <a href="/pages/small-group" data-base="/pages/small-group" class="button button--primary book-now">Book Now</a>
       </div>
     </div>
 
@@ -228,7 +228,7 @@
             <li>Customized assessments</li>
           </ul>
         </div>
-        <a href="/pages/teacher-matching?package=group-classes" class="button button--primary book-now">Book Now</a>
+        <a href="/pages/group-classes" data-base="/pages/group-classes" class="button button--primary book-now">Book Now</a>
       </div>
     </div>
   </div>
@@ -462,51 +462,43 @@
 document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
   const initialDuration = params.get('duration') || 'monthly';
+  const selectedTeacher = params.get('teacher');
   const durationOptions = document.querySelectorAll('.duration-option');
+  const bookButtons = document.querySelectorAll('.book-now');
 
-  // Set initial state
+  function updateBookLinks(duration) {
+    bookButtons.forEach(btn => {
+      const base = btn.dataset.base || btn.getAttribute('href');
+      const url = new URL(base, window.location.origin);
+      url.searchParams.set('duration', duration);
+      if (selectedTeacher) {
+        url.searchParams.set('teacher', selectedTeacher);
+      }
+      btn.setAttribute('href', url.pathname + url.search);
+    });
+  }
+
   durationOptions.forEach(btn => {
-    if (btn.dataset.duration === initialDuration) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
+    btn.classList.toggle('active', btn.dataset.duration === initialDuration);
   });
   document.querySelectorAll('.price-option').forEach(priceOption => {
-    priceOption.classList.remove('active');
+    priceOption.classList.toggle('active', priceOption.classList.contains(initialDuration));
   });
-  document.querySelectorAll(`.price-option.${initialDuration}`).forEach(priceOption => {
-    priceOption.classList.add('active');
-  });
+
+  updateBookLinks(initialDuration);
 
   durationOptions.forEach(option => {
     option.addEventListener('click', function() {
       const duration = this.dataset.duration;
 
-      // Update toggle buttons
       durationOptions.forEach(btn => btn.classList.remove('active'));
       this.classList.add('active');
 
-      // Update price displays
       document.querySelectorAll('.price-option').forEach(priceOption => {
-        priceOption.classList.remove('active');
+        priceOption.classList.toggle('active', priceOption.classList.contains(duration));
       });
 
-      document.querySelectorAll(`.price-option.${duration}`).forEach(priceOption => {
-        priceOption.classList.add('active');
-      });
-    });
-  });
-
-  document.querySelectorAll('.package-card').forEach(card => {
-    const btn = card.querySelector('.book-now');
-    if (!btn) return;
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const activeDuration = document.querySelector('.duration-option.active')?.dataset.duration || 'monthly';
-      const url = new URL(btn.getAttribute('href'), window.location.origin);
-      url.searchParams.set('duration', activeDuration);
-      window.location.href = url.toString();
+      updateBookLinks(duration);
     });
   });
 });
